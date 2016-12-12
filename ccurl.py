@@ -24,11 +24,12 @@ def get_config_opts():
     parser.add_argument("--header", "-H", help="Headers")
     parser.add_argument("--base_url", "-b", help="Base url")
     parser.add_argument("--rel_url", "-r", help="Relative url")
-    parser.add_argument("--debug", "-d", help="Show the entire request")
-    parser.add_argument("--method", "-M", help="Request method, default: GET")
+    parser.add_argument("--debug", "-D", help="Show the entire request")
+    parser.add_argument("--method", "-X", help="Request method, default: GET")
     parser.add_argument("--content_type", "-C", help="Content type")
     parser.add_argument("--accept_type", "-A", help="Acceptable content type")
-    parser.add_argument("--payload", "-p", help="payload to be sent")
+    parser.add_argument("--content_length", "-l", help="Content length")
+    parser.add_argument("--payload", "-d", help="payload to be sent")
     parser.add_argument("--auth_token", "-t", help="Auth token")
     parser.add_argument("--file", "-f", help="Binary file to be uploaded")
     args = parser.parse_args(remaining_argv)
@@ -46,8 +47,8 @@ def ccurl():
     headers = {
         "content-type": args.content_type,
         "accept": args.accept_type,
-        "X-Auth-Token": args.auth_token
-    }
+        "X-Auth-Token": args.auth_token,
+        "Content-Length": args.content_length}
     if args.header:
         headers.update(args.header)
     if args.method == 'POST':
@@ -56,20 +57,27 @@ def ccurl():
                               files={"file": open(args.file,
                                                   "rb")},
                               headers=headers)
-        else:
+        elif args.payload:
             r = requests.post(url, json=args.payload, headers=headers)
+        else:
+            r = requests.post(url, headers=headers)
     elif args.method == 'PUT':
-        r = requests.post(url, json=args.payload, headers=headers)
+        if args.payload:
+            r = requests.put(url, json=args.payload, headers=headers)
+        else:
+            r = requests.put(url, headers=headers)
     elif args.method == 'HEAD':
-        r = requests.post(url, headers=headers)
+        r = requests.head(url, headers=headers)
     elif args.method == 'OPTIONS':
-        r = requests.post(url, headers=headers)
+        r = requests.options(url, headers=headers)
     else:
         r = requests.get(url, headers=headers)
     try:
         response = r.text
     except Exception:
         response = r.content
+    if not response:
+        response = r.headers
     return response
 
 
