@@ -44,6 +44,9 @@ def ccurl():
     if url is None:
         print("No URL provided, exiting...")
         exit(1)
+    if args.payload:
+        if args.payload.strip().startswith('eval:'):
+            args.payload = eval(args.payload[5:])
     headers = {
         "content-type": args.content_type,
         "accept": args.accept_type,
