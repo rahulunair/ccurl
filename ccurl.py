@@ -45,6 +45,7 @@ def ccurl():
         print("No URL provided, exiting...")
         exit(1)
     if args.payload:
+        # Eval to evaluate python expressions to create fuzz_data
         if args.payload.strip().startswith('eval:'):
             args.payload = eval(args.payload[5:])
     headers = {
@@ -61,12 +62,18 @@ def ccurl():
                                                   "rb")},
                               headers=headers)
         elif args.payload:
-            r = requests.post(url, json=args.payload, headers=headers)
+            try:
+                r = requests.post(url, json=args.payload, headers=headers)
+            except Exception:
+                r = requests.post(url, data=args.payload, headers=headers)
         else:
             r = requests.post(url, headers=headers)
     elif args.method == 'PUT':
         if args.payload:
-            r = requests.put(url, json=args.payload, headers=headers)
+            try:
+                r = requests.put(url, json=args.payload, headers=headers)
+            except Exception:
+                r = requests.put(url, data=args.payload, headers=headers)
         else:
             r = requests.put(url, headers=headers)
     elif args.method == 'HEAD':
