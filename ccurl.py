@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """A simple wrapper for request"""
 import argparse
 import ConfigParser
@@ -52,15 +51,14 @@ def ccurl():
         "content-type": args.content_type,
         "accept": args.accept_type,
         "X-Auth-Token": args.auth_token,
-        "Content-Length": args.content_length}
+        "Content-Length": args.content_length
+    }
     if args.header:
         headers.update(args.header)
     if args.method == 'POST':
         if args.file:
-            r = requests.post(url,
-                              files={"file": open(args.file,
-                                                  "rb")},
-                              headers=headers)
+            r = requests.post(
+                url, files={"file": open(args.file, "rb")}, headers=headers)
         elif args.payload:
             try:
                 r = requests.post(url, json=args.payload, headers=headers)
