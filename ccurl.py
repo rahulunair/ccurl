@@ -45,8 +45,12 @@ def ccurl():
         exit(1)
     if args.payload:
         # Eval to evaluate python expressions to create fuzz_data
+        # This is dangerous, so use it with known scipts
         if args.payload.strip().startswith('eval:'):
             args.payload = eval(args.payload[5:])
+        # warning !! >> Nuclear <<
+        elif args.payload.strip()[-3:] == ".py":
+            args._payload = eval(open(args.payload))
     headers = {
         "content-type": args.content_type,
         "accept": args.accept_type,
@@ -61,17 +65,17 @@ def ccurl():
                 url, files={"file": open(args.file, "rb")}, headers=headers)
         elif args.payload:
             try:
-                r = requests.post(url, json=args.payload, headers=headers)
-            except Exception:
                 r = requests.post(url, data=args.payload, headers=headers)
+            except Exception:
+                r = requests.post(url, json=args.payload, headers=headers)
         else:
             r = requests.post(url, headers=headers)
     elif args.method == 'PUT':
         if args.payload:
             try:
-                r = requests.put(url, json=args.payload, headers=headers)
-            except Exception:
                 r = requests.put(url, data=args.payload, headers=headers)
+            except Exception:
+                r = requests.put(url, json=args.payload, headers=headers)
         else:
             r = requests.put(url, headers=headers)
     elif args.method == 'HEAD':
