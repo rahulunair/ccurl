@@ -80,6 +80,8 @@ def ccurl():
     except Exception:
         response = r.content
     if not response:
+        # if the reponse is empty, return the headers
+        # This, is used to see response for HEAD requests
         response = r.headers
     return response
 
