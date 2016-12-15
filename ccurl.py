@@ -79,6 +79,7 @@ def ccurl():
         else:
             r = requests.put(url, headers=headers)
     elif args.method == 'HEAD':
+        print("url and headers are : {0} and {1}".format(url, headers))
         r = requests.head(url, headers=headers)
     elif args.method == 'OPTIONS':
         r = requests.options(url, headers=headers)
