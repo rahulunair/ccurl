@@ -10,7 +10,7 @@
 
 			*-Configurable Curl-*
 
-CcURL is a simple application that can be used to cURL APIs using a configuration file.
+Ccurl is a simple application that can be used to cURL APIs using a configuration file.
 The configuration file can be used to maintain a set of commonly uses data such as
 the base url, different set of headers etc. Along with this there are a few niche features
 of CcURL that would help in testing a REST API.
