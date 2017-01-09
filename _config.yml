@@ -1,3 +1,3 @@
 theme: jekyll-theme-modernist
-title: [Configurable Curl, with an eval twist]
-description: [A simple application to curl API requests, that has the option to configure some parameters and also has the ability to inject code to PUT and POST requests.]
+title: [Configurable Curl with an eval twist]
+description: [A simple application to curl API requests that has the option to configure some parameters and also has the ability to inject code to PUT and POST requests.]

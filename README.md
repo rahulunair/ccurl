@@ -8,7 +8,7 @@
     \     |\     ||     ||  .  \|     |
      \____| \____| \__,_||__|\_||_____|
 
-			*-Configurable Curl-*
+		*-Configurable Curl-*
 
 Ccurl is a simple application that can be used to cURL APIs using a configuration file.
 The configuration file can be used to maintain a set of commonly uses data such as
