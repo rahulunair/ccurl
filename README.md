@@ -10,13 +10,18 @@
 
 			*-Configurable Curl-*
 
-A wrapper for python requests, that takes in a config file to simplify `curling` REST URLs
-If you are thinking of using this tool, be warned this is an alpha stage code, that uses
-things like eval to execute python code injected, which can be a security issue in some
-situations. Only use this tool if you really know what you are doing and to test an API
-you have prior permission to test.
+CcURL is a simple application that can be used to cURL APIs using a configuration file.
+The configuration file can be used to maintain a set of commonly uses data such as
+the base url, different set of headers etc. Along with this there are a few niche features
+of CcURL that would help in testing a REST API.
 
-## configuration
+Underneath, it a wrapper for python requests, that takes in a config file to
+simplify `curling` REST URLs If you are thinking of using this tool, be warned this
+is an alpha stage code, that uses things like eval to execute injected python code,
+which can be a security issue in some situations. Only use this tool if you really
+know what you are doing and to test an API you have prior permission to test.
+
+## Configuration
 
 Below is a sample configuration that can be used to intitiate ccurling.
 
