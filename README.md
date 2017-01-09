@@ -16,7 +16,7 @@ things like eval to execute python code injected, which can be a security issue 
 situations. Only use this tool if you really know what you are doing and to test an API
 you have prior permission to test.
 
-## Example configuration
+## configuration
 
 Below is a sample configuration that can be used to intitiate ccurling.
 
@@ -27,6 +27,9 @@ Below is a sample configuration that can be used to intitiate ccurling.
     auth_token=your_token #  if needed
     base_url = https://localhost:80/
 
+A sample configuration file `ccurl.conf` has been provided with the repo.
+
+## Usage
 
 ### Basic usage
 
@@ -83,9 +86,9 @@ For a more complete use case of this feature, refer to the repo on [attack_paylo
 
 You could provided additional headers as well using the -H option of ccurl,
 
-# Example
+#### Example
 ```
-./ccurl.py -r /cgi-bin/upload.php -H {'meta-name': 'meta-value'} 
+./ccurl.py -r /cgi-bin/upload.php -H {'meta-name': 'meta-value'}
 ```
 
 ### Debugging
