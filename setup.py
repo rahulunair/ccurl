@@ -9,7 +9,7 @@ setup(name="ccurl",
     install_requires = [
         "configparser==4.0.2",
         "requests==2.23.0",
-        "urllib3==1.25.8"
+        "urllib3==1.26.5"
         ],
     classifiers = [
         "Programming Language :: Python",
